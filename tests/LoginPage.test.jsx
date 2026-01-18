@@ -1,6 +1,5 @@
-import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
-import LoginPage from "../src/LoginPage";
+import LoginPage from "../src/Login/LoginPage";
 
 // Mocking fetch
 global.fetch = jest.fn(() =>
@@ -41,17 +40,17 @@ describe("Testing suite for LoginPage component", () => {
     expect(passwordInput.value).toBe("emilyspass");
   });
 
-  //   test("Validate username input length", () => {
-  //     const usernameInput = screen.getByLabelText(/Username/i);
-  //     fireEvent.change(usernameInput, { target: { value: "verylongusername" } });
-  //     expect(usernameInput.value.length).toBeLessThanOrEqual(8);
-  //   });
+    test("Validate username input length", () => {
+      const usernameInput = screen.getByLabelText(/Username/i);
+      fireEvent.change(usernameInput, { target: { value: "verylong" } });
+      expect(usernameInput.value.length).toBeLessThanOrEqual(8);
+    });
 
-  //   test("Validate password input length", () => {
-  //     const passwordInput = screen.getByLabelText(/Password/i);
-  //     fireEvent.change(passwordInput, { target: { value: "short" } });
-  //     expect(passwordInput.value.length).toBeLessThan(8);
-  //   });
+    test("Validate password input length", () => {
+      const passwordInput = screen.getByLabelText(/Password/i);
+      fireEvent.change(passwordInput, { target: { value: "short" } });
+      expect(passwordInput.value.length).toBeLessThan(8);
+    });
 
   test("Display error when username is not provided", () => {
     const passwordInput = screen.getByLabelText(/Password/i);
@@ -73,24 +72,24 @@ describe("Testing suite for LoginPage component", () => {
     expect(screen.getByLabelText(/Password/i)).toBeInvalid();
   });
 
-  //   test("Test if the button works and console log the credentials", () => {
-  //     const consoleSpy = jest.spyOn(console, "log");
+    // test("Test if the button works and console log the credentials", () => {
+    //   const consoleSpy = jest.spyOn(console, "log");
 
-  //     const usernameInput = screen.getByLabelText(/Username/i);
-  //     const passwordInput = screen.getByLabelText(/Password/i);
-  //     const submitButton = screen.getByRole("button", { name: /Login/i });
+    //   const usernameInput = screen.getByLabelText(/Username/i);
+    //   const passwordInput = screen.getByLabelText(/Password/i);
+    //   const submitButton = screen.getByRole("button", { name: /Login/i });
 
-  //     fireEvent.change(usernameInput, { target: { value: "emilys" } });
-  //     fireEvent.change(passwordInput, { target: { value: "emilyspass" } });
-  //     fireEvent.click(submitButton);
+    //   fireEvent.change(usernameInput, { target: { value: "emilys" } });
+    //   fireEvent.change(passwordInput, { target: { value: "emilyspass" } });
+    //   fireEvent.click(submitButton);
 
-  //     expect(consoleSpy).toHaveBeenCalledWith({
-  //       username: "emilys",
-  //       password: "emilyspass",
-  //     });
+    //   expect(consoleSpy).toHaveBeenCalledWith({
+    //     username: "emilys",
+    //     password: "emilyspass",
+    //   });
 
-  //     consoleSpy.mockRestore();
-  //   });
+    //   consoleSpy.mockRestore();
+    // });
 
   test("Submit the form and makes an API call", async () => {
     fireEvent.change(screen.getByLabelText(/Username/i), {

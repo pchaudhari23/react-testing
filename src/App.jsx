@@ -1,4 +1,4 @@
-import LoginPage from "./LoginPage";
+import LoginPage from "./Login/LoginPage.jsx";
 
 function App() {
   return <LoginPage />;

@@ -59,7 +59,10 @@ const LoginPage = () => {
           />
         </div>
         <div className="form-field">
-          <button type="submit" className="submit-button">
+          <button
+            type="submit"
+            className="submit-button"
+          >
             Login
           </button>
         </div>
